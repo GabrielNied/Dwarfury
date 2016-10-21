@@ -29,10 +29,10 @@ public abstract class Character : MonoBehaviour {
 
     protected bool facingRight;
 
-    private bool subir = false;
-    private bool descer = false;
+    public bool subir = false;
+    public bool descer = false;
 
-    private bool abrir = false;
+    public bool abrir = false;
     // Use this for initialization
     public virtual void Start() {
 

@@ -69,7 +69,7 @@ public class Player : Character {
     public int exp =0;
     public int maxexp = 10;
 
-    //private GUIStyle guiStyle = new GUIStyle();
+    private GUIStyle guiStyle = new GUIStyle();
 
     public override void Start () {
 		if (Application.loadedLevel == 2) {
@@ -322,7 +322,7 @@ public class Player : Character {
 
 	public override bool IsDead{
 		get{
-            if (health == 0) {
+            if (health <= 0) {
                 GetComponent<PolygonCollider2D>().enabled = false;
                 GetComponent<BoxCollider2D>().enabled = true;
                 exp = 0;
