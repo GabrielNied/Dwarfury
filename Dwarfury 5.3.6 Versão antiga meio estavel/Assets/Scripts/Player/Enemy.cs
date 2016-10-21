@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Enemy : Character {
     private Player player;
-
+	private FloatingTextController ftc;
     private IEnemyState currentState;
 
     public GameObject Target { get; set; }
@@ -149,7 +149,7 @@ public class Enemy : Character {
     public override IEnumerator TakeDamage()
     {
         enemyhealth -= player.atk;
-        // FloatingTextController.CreateFloatingText(player.atk.ToString(), transform);
+        FloatingTextController.CreateFloatingText(player.atk.ToString(), transform);
 
         if (!IsDead) {
 			MyAnimator.SetTrigger ("damage");
