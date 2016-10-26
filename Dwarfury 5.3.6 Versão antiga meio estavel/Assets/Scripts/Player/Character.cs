@@ -51,7 +51,7 @@ public abstract class Character : MonoBehaviour {
     public void ChangeDirection()
     {
         facingRight = !facingRight;
-        transform.localScale = new Vector3(transform.localScale.x * -1, 1, 1);
+		transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y * 1, transform.localScale.z * 1);
         
     }
 
@@ -59,31 +59,40 @@ public abstract class Character : MonoBehaviour {
 		WeaponCollider.enabled = true;
 	}
 
-	public virtual void OnTriggerEnter2D(Collider2D other){
-        if (damageSources.Contains(other.tag))
+	public virtual void OnTriggerEnter2D(Collider2D target){
+        if (damageSources.Contains(target.tag))
         {
             if (!IsDead)
             {
                 StartCoroutine(TakeDamage());
             }
         }
-        if (other.tag == "Escada")
+        if (target.tag == "Escada")
         {
             subir = true;
             descer = true;
         }
 
-        if (other.tag == "Bau")
+        if (target.tag == "Bau")
         {
             abrir = true;
         }
     }
+
+	void OnTriggerStay2D(Collider2D target){
+		if (target.tag == "Escada")
+		{
+		this.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+		this.GetComponent<Rigidbody2D>().gravityScale = 0.0f;
+		}
+	}
     void OnTriggerExit2D(Collider2D target)
     {
         if (target.tag == "Escada")
         {
             subir = false;
-            descer = true;
+            descer = false;
+			this.GetComponent<Rigidbody2D>().gravityScale = 1.0f;
         }
     }
 }

@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/Dwarfury.unity
+- path: Assets/Scenes/Dwarfury1.unity
   isLoaded: 1
   isActive: 1

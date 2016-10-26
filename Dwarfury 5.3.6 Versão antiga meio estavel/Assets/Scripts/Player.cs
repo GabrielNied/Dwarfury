@@ -36,6 +36,8 @@ public class Player : Character {
     private bool attack;
     private bool isGrounded;
     private bool jump;
+	private bool jump2;
+	private bool pulando;
     //private bool isDashKeyDown;
     private bool immortal = false;
 
@@ -72,7 +74,7 @@ public class Player : Character {
     private GUIStyle guiStyle = new GUIStyle();
 
     public override void Start () {
-		if (Application.loadedLevel == 2) {
+		if (Application.loadedLevel == 0) {
 			randomStats ();
 			PlayerPrefs.SetInt ("Vida", basehealth);
 			PlayerPrefs.SetInt ("Atq", baseatk);
@@ -153,21 +155,28 @@ public class Player : Character {
 
 
     private void HandleMovement(float horizontal)
-    {
-        //		if (!this.myAnimator.GetCurrentAnimatorStateInfo (0).IsTag ("Attack")) {                                     PARA MOVIMENTAÇÃO QUANDO ATACA
+	{
+		//		if (!this.myAnimator.GetCurrentAnimatorStateInfo (0).IsTag ("Attack")) {                                     PARA MOVIMENTAÇÃO QUANDO ATACA
 
-            myRigidbody.velocity = new Vector2(horizontal * movementSpeed, myRigidbody.velocity.y);
+		myRigidbody.velocity = new Vector2 (horizontal * movementSpeed, myRigidbody.velocity.y);
 
 
-            MyAnimator.SetFloat("speed", Mathf.Abs(horizontal));
-            //		}																											PARA MOVIMENTAÇÃO QUANDO ATACA
+		MyAnimator.SetFloat ("speed", Mathf.Abs (horizontal));
+		//		}																											PARA MOVIMENTAÇÃO QUANDO ATACA
 
-            if (isGrounded && jump)
-            {
-                isGrounded = false;
-                myRigidbody.AddForce(new Vector2(0, jumpForce));
-            }
-    }
+	
+		if (pulando && jump2 && !isGrounded) {
+			myRigidbody.velocity = new Vector2 (myRigidbody.velocity.y, jumpForce);
+			pulando = false;
+		
+		} else {
+			if (isGrounded && jump) {
+				isGrounded = false;
+				myRigidbody.AddForce (new Vector2 (0, jumpForce));
+				pulando = true;
+			}
+		}
+	}
 
     /*            switch (dashState)
                 {
@@ -235,12 +244,14 @@ public class Player : Character {
 		if (subir == true) {
 			if (Input.GetKey(KeyCode.W)) {
 				myRigidbody.velocity = new Vector2(myRigidbody.velocity.x, 1 * movementSpeed / 2);
+				//this.myRigidbody.gravityScale = 0.0f;
 			}
 		}
 
 		if (descer == true) {
 			if (Input.GetKey(KeyCode.S)) {
-				myRigidbody.velocity = new Vector2(myRigidbody.velocity.x, -5 * movementSpeed / 2);
+				myRigidbody.velocity = new Vector2(myRigidbody.velocity.x, -2 * movementSpeed / 2);
+				//this.myRigidbody.gravityScale = 0.0f;
 			}
 		}
 	}
@@ -250,9 +261,18 @@ public class Player : Character {
 			attack = true;
 		}
 
+
 		if (Input.GetKeyDown (KeyCode.Space)) {
 			jump = true;
 		}
+
+		if (Input.GetKeyDown (KeyCode.Space)) {
+			jump2 = true;
+		}
+
+
+
+
 //        if (Input.GetKeyDown(KeyCode.E))
 //    {
 //        isDashKeyDown = true;
@@ -260,7 +280,7 @@ public class Player : Character {
 	}
 
 	private void Flip(float horizontal){
-		if (horizontal < 0 && !facingRight || horizontal > 0 && facingRight) {
+		if (horizontal > 0 && !facingRight || horizontal < 0 && facingRight) {
 			ChangeDirection ();
 		}
 	}
@@ -269,6 +289,7 @@ public class Player : Character {
 		attack = false;
        // isDashKeyDown = false;
 		jump = false;
+		jump2 = false;
 	}
 
 	private bool IsGrounded(){
