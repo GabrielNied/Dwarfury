@@ -7,6 +7,7 @@ public class LevelLoader : MonoBehaviour {
 
     public string levelToLoad;
 	public Player player;
+	public FadeManager fM;
 	// Use this for initialization
 	void Start () {
         playerInZone = false;
@@ -16,13 +17,19 @@ public class LevelLoader : MonoBehaviour {
 	void Update () {
 		if(Input.GetKeyDown(KeyCode.E) && playerInZone)
         {
+			fM.Fade (true, 3.0f);
 			PlayerPrefs.SetInt ("Vida1", player.health);
 			PlayerPrefs.SetInt ("Vida2", player.maxhealth);
 			PlayerPrefs.SetInt ("Atq1", player.atk);
 			PlayerPrefs.SetInt ("Def1", player.def);
-            Application.LoadLevel(levelToLoad);
+			StartCoroutine (Wait(3.0f));
+
 
         }
+	}
+	IEnumerator Wait(float waitTime){
+		yield return new WaitForSeconds (waitTime);
+		Application.LoadLevel(levelToLoad);
 	}
 
     void OnTriggerEnter2D(Collider2D other)

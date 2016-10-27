@@ -67,6 +67,11 @@ public abstract class Character : MonoBehaviour {
                 StartCoroutine(TakeDamage());
             }
         }
+		if (target.tag == "Espinhos") {
+			this.GetComponent<Player>().health -= 1;
+			this.GetComponent<Player>().StartCoroutine(Knockback(0.1f, 5, transform.position));
+
+		}
         if (target.tag == "Escada")
         {
             subir = true;
@@ -92,7 +97,25 @@ public abstract class Character : MonoBehaviour {
         {
             subir = false;
             descer = false;
-			this.GetComponent<Rigidbody2D>().gravityScale = 1.0f;
+			this.GetComponent<Rigidbody2D>().gravityScale = 2.0f;
         }
     }
+	public IEnumerator Knockback(float knockDur, float knockbackPwr, Vector3 knockbackDir)
+	{
+
+		float timer = 0;
+
+		while (knockDur > timer)
+		{
+
+			timer += Time.deltaTime;
+
+			this.GetComponent<Rigidbody2D>().AddForce(new Vector3(knockbackDir.x * knockbackPwr , knockbackDir.y * knockbackPwr, transform.position.z));
+
+
+		}
+
+		yield return 0;
+
+	}
 }

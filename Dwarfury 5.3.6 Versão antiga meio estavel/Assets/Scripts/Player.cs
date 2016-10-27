@@ -70,10 +70,12 @@ public class Player : Character {
     public int basedef;
     public int exp =0;
     public int maxexp = 10;
+	public FadeManager fM;
 
     private GUIStyle guiStyle = new GUIStyle();
 
     public override void Start () {
+		fM.Fade (false, 2.0f);
 		if (Application.loadedLevel == 0) {
 			randomStats ();
 			PlayerPrefs.SetInt ("Vida", basehealth);
@@ -109,8 +111,6 @@ public class Player : Character {
 	void Update(){
         recalculateStats();
         PlayerPrefs.SetInt("Exp", exp);
-
-
 
         if (!TakingDamage && !IsDead && !LevelingUp) {
 			if (transform.position.y <= -14f) {
@@ -166,14 +166,16 @@ public class Player : Character {
 
 	
 		if (pulando && jump2 && !isGrounded) {
-			myRigidbody.velocity = new Vector2 (myRigidbody.velocity.y, jumpForce);
+			myRigidbody.velocity = new Vector2 (0, jumpForce / 50);
 			pulando = false;
+		
 		
 		} else {
 			if (isGrounded && jump) {
 				isGrounded = false;
 				myRigidbody.AddForce (new Vector2 (0, jumpForce));
 				pulando = true;
+
 			}
 		}
 	}
@@ -269,8 +271,6 @@ public class Player : Character {
 		if (Input.GetKeyDown (KeyCode.Space)) {
 			jump2 = true;
 		}
-
-
 
 
 //        if (Input.GetKeyDown(KeyCode.E))
@@ -408,25 +408,6 @@ public class Player : Character {
             maxhealth += 1;
             MyAnimator.SetTrigger("levelup");
         }
-
-    }
-
-    public IEnumerator Knockback(float knockDur, float knockbackPwr, Vector3 knockbackDir)
-    {
-
-        float timer = 0;
-
-        while (knockDur > timer)
-        {
-
-            timer += Time.deltaTime;
-
-                myRigidbody.AddForce(new Vector3(knockbackDir.x * -100, knockbackDir.y * knockbackPwr, transform.position.z));
-
-           
-        }
-
-        yield return 0;
 
     }
 
