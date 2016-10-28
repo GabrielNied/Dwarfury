@@ -74,10 +74,14 @@ public class Player : Character {
 
     private GUIStyle guiStyle = new GUIStyle();
 
-    public override void Start () {
+    public override void Start ()
+	{
 		fM.Fade (false, 2.0f);
-		if (Application.loadedLevel == 0) {
+
+		if (Application.loadedLevel == 0)
+		{
 			randomStats ();
+
 			PlayerPrefs.SetInt ("Vida", basehealth);
 			PlayerPrefs.SetInt ("Atq", baseatk);
 			PlayerPrefs.SetInt ("Def", basedef);
@@ -86,42 +90,41 @@ public class Player : Character {
 			atk = baseatk;
 			def = basedef;
 		}
-        
 		enemy = FindObjectOfType<Enemy>();
         base.Start ();
 
         spriteRenderer = GetComponent<SpriteRenderer>();
 		myRigidbody = GetComponent<Rigidbody2D> ();
-		//basehealth = PlayerPrefs.GetInt("Vida");
-		//baseatk = PlayerPrefs.GetInt("Atq");
-		//basedef = PlayerPrefs.GetInt("Def");
 
         exp = PlayerPrefs.GetInt("Exp");
-
-
-    
 	}
-	void Awake(){
+
+	void Awake()
+	{
 		health = PlayerPrefs.GetInt("Vida1");
 		maxhealth = PlayerPrefs.GetInt("Vida2");
 		atk = PlayerPrefs.GetInt("Atq1");
 		def = PlayerPrefs.GetInt("Def1");
 	}
 
-	void Update(){
-        recalculateStats();
-        PlayerPrefs.SetInt("Exp", exp);
+	void Update()
+	{
+    PlayerPrefs.SetInt("Exp", exp);
 
-        if (!TakingDamage && !IsDead && !LevelingUp) {
-			if (transform.position.y <= -14f) {
+        if (!TakingDamage && !IsDead && !LevelingUp)
+		{
+			if (transform.position.y <= -14f)
+			{
 				myRigidbody.velocity = Vector2.zero;
 			}
 			HandleInput ();
 		}
 	}
 		
-	void FixedUpdate () {
-		if (!TakingDamage && !IsDead && !LevelingUp) {
+	void FixedUpdate ()
+	{
+		if (!TakingDamage && !IsDead && !LevelingUp)
+		{
 			float horizontal = Input.GetAxis ("Horizontal");
             levelup();
 
@@ -153,29 +156,23 @@ public class Player : Character {
         GUI.Label(new Rect(20, 40, 200, 40), "<color=green><size=20> EXP = " + exp + " / " + maxexp + "</size></color>");
     }
 
-
     private void HandleMovement(float horizontal)
 	{
 		//		if (!this.myAnimator.GetCurrentAnimatorStateInfo (0).IsTag ("Attack")) {                                     PARA MOVIMENTAÇÃO QUANDO ATACA
-
 		myRigidbody.velocity = new Vector2 (horizontal * movementSpeed, myRigidbody.velocity.y);
-
-
 		MyAnimator.SetFloat ("speed", Mathf.Abs (horizontal));
 		//		}																											PARA MOVIMENTAÇÃO QUANDO ATACA
 
-	
-		if (pulando && jump2 && !isGrounded) {
+		if (pulando && jump2 && !isGrounded)
+		{
 			myRigidbody.velocity = new Vector2 (0, jumpForce / 50);
 			pulando = false;
-		
-		
 		} else {
-			if (isGrounded && jump) {
+			if (isGrounded && jump)
+			{
 				isGrounded = false;
 				myRigidbody.AddForce (new Vector2 (0, jumpForce));
 				pulando = true;
-
 			}
 		}
 	}
@@ -221,9 +218,11 @@ public class Player : Character {
     }
     */
 
-    private void HandleAttacks(){
+    private void HandleAttacks()
+	{
 //		if (attack && !this.myAnimator.GetCurrentAnimatorStateInfo (0).IsTag ("Attack")) {							 PARA MOVIMENTAÇÃO QUANDO ATACA
-		if (attack && !this.MyAnimator.GetCurrentAnimatorStateInfo (0).IsTag ("Attack")) {
+		if (attack && !this.MyAnimator.GetCurrentAnimatorStateInfo (0).IsTag ("Attack"))
+		{
 			MyAnimator.SetTrigger ("attack");
 //			myRigidbody.velocity = Vector2.zero;																 PARA MOVIMENTAÇÃO QUANDO ATACA
 		}
@@ -243,15 +242,18 @@ public class Player : Character {
 	private void HandleMovementEscada()
 	{
 		
-		if (subir == true) {
+		if (subir == true)
+		{
 			if (Input.GetKey(KeyCode.W)) {
 				myRigidbody.velocity = new Vector2(myRigidbody.velocity.x, 1 * movementSpeed / 2);
 				//this.myRigidbody.gravityScale = 0.0f;
 			}
 		}
 
-		if (descer == true) {
-			if (Input.GetKey(KeyCode.S)) {
+		if (descer == true)
+		{
+			if (Input.GetKey(KeyCode.S))
+			{
 				myRigidbody.velocity = new Vector2(myRigidbody.velocity.x, -2 * movementSpeed / 2);
 				//this.myRigidbody.gravityScale = 0.0f;
 			}
@@ -259,16 +261,18 @@ public class Player : Character {
 	}
 
 	private void HandleInput(){
-		if (Input.GetKeyDown (KeyCode.Mouse0)) {
+		if (Input.GetKeyDown (KeyCode.Mouse0))
+		{
 			attack = true;
 		}
 
-
-		if (Input.GetKeyDown (KeyCode.Space)) {
+		if (Input.GetKeyDown (KeyCode.Space))
+		{
 			jump = true;
 		}
 
-		if (Input.GetKeyDown (KeyCode.Space)) {
+		if (Input.GetKeyDown (KeyCode.Space))
+		{
 			jump2 = true;
 		}
 
@@ -279,26 +283,34 @@ public class Player : Character {
 //    }
 	}
 
-	private void Flip(float horizontal){
-		if (horizontal > 0 && !facingRight || horizontal < 0 && facingRight) {
+	private void Flip(float horizontal)
+	{
+		if (horizontal > 0 && !facingRight || horizontal < 0 && facingRight)
+		{
 			ChangeDirection ();
 		}
 	}
 
-	private void ResetValues(){
+	private void ResetValues()
+	{
 		attack = false;
        // isDashKeyDown = false;
 		jump = false;
 		jump2 = false;
 	}
 
-	private bool IsGrounded(){
-		if (myRigidbody.velocity.y <= 0) {
-			foreach (Transform point in groundPoints) {
+	private bool IsGrounded()
+	{
+		if (myRigidbody.velocity.y <= 0)
+		{
+			foreach (Transform point in groundPoints)
+			{
 				Collider2D[] colliders = Physics2D.OverlapCircleAll (point.position, groundRadius, whatIsGround);
 
-				for (int i = 0; i < colliders.Length; i++) {
-					if (colliders [i].gameObject != gameObject) {
+				for (int i = 0; i < colliders.Length; i++)
+				{
+					if (colliders [i].gameObject != gameObject)
+					{
 						return true;
 					}
 				}
@@ -312,43 +324,54 @@ public class Player : Character {
         while (immortal)
         {
             spriteRenderer.enabled = !spriteRenderer.enabled;
-          //  spriteRenderer.enable = false;
+            //spriteRenderer.enable = false;
             yield return new WaitForSeconds(.1f);
+
             spriteRenderer.enabled = !spriteRenderer.enabled;
             //spriteRenderer.enable = true;
             yield return new WaitForSeconds(.1f);
         }
     }
-
-
-	public override IEnumerator TakeDamage(){
+		
+	public override IEnumerator TakeDamage()
+	{
         if (!immortal)
         {
-            health -= enemy.enemyatk;
+			if (GameObject.FindGameObjectWithTag ("Espinhos"))
+			{
+				health -= 1;
+			} else {
+				health -= enemy.enemyatk;
+			}
 
             if (!IsDead)
             {
-                    MyAnimator.SetTrigger("damage");
-                    immortal = true;
+            	MyAnimator.SetTrigger("damage");
+            	immortal = true;
 
-                    StartCoroutine(IndicateImmortal());
-                    yield return new WaitForSeconds(immortalTime);
+            	StartCoroutine(IndicateImmortal());
+           		yield return new WaitForSeconds(immortalTime);
 
-                    immortal = false;
-                }
-            }
+            	immortal = false;
+        	}
+    	}
+    }
 
-        }
-	
-
-	public override bool IsDead{
-		get{
-            if (health <= 0) {
+	public override bool IsDead
+	{
+		get
+		{
+            if (health <= 0)
+			{
                 GetComponent<PolygonCollider2D>().enabled = false;
                 GetComponent<BoxCollider2D>().enabled = true;
+
                 exp = 0;
+
                 MyAnimator.SetTrigger("die");
+
                 OnDead();
+
                 this.GetComponent<Rigidbody2D>().gravityScale = 0.0f;
                 myRigidbody.velocity = new Vector2(0 * 0, 1*1);
                 spriteRenderer.color = new Color(1f, 1f, 1f, .5f);
@@ -357,6 +380,7 @@ public class Player : Character {
             return health <= 0;
 		}
 	}
+
     public void randomStats()
     {
         baseatk = 3;
@@ -385,18 +409,6 @@ public class Player : Character {
         }
     }
 
-    public void recalculateStats()
-    {
-        //atk = baseatk;
-       // def = basedef;
-
-        
-        //health = basehealth;
-
-        // checar por mudança de estadus aqui ex:
-        //if (UsandoAneldeAtaque+2) atk = atk + 2;
-
-    }
     public void levelup()
     {
         if (exp >= maxexp)

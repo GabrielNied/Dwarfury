@@ -31,18 +31,16 @@ public abstract class Character : MonoBehaviour {
 
     public bool subir = false;
     public bool descer = false;
-
     public bool abrir = false;
-    // Use this for initialization
-    public virtual void Start() {
 
+    public virtual void Start() 
+	{
         facingRight = true;
         MyAnimator = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
-    void Update() {
-
+    void Update()
+	{
 
     }
 
@@ -55,22 +53,33 @@ public abstract class Character : MonoBehaviour {
         
     }
 
-	public void MeleeAttack(){
+	public void MeleeAttack()
+	{
 		WeaponCollider.enabled = true;
 	}
 
-	public virtual void OnTriggerEnter2D(Collider2D target){
-        if (damageSources.Contains(target.tag))
-        {
-            if (!IsDead)
-            {
-                StartCoroutine(TakeDamage());
-            }
-        }
-		if (target.tag == "Espinhos") {
-			this.GetComponent<Player>().health -= 1;
-			this.GetComponent<Player>().StartCoroutine(Knockback(0.1f, 5, transform.position));
+	public virtual void OnTriggerEnter2D(Collider2D target)
+	{
+		if (damageSources.Contains (target.tag))
+		{
+			if (!IsDead)
+			{
+				StartCoroutine (TakeDamage ());
 
+				Debug.Log ("PlayerPos " + this.GetComponent<Player> ().transform.position.x);
+				Debug.Log ("EspinhosPos " + target.transform.position.x);
+
+				//Se o player está vindo da esquerda
+				if (this.GetComponent<Player> ().transform.position.x > target.transform.position.x)
+				{	
+					this.GetComponent<Player> ().StartCoroutine (Knockback (4f, 1, transform.position));
+				}
+				//Se o player está vindo da direita
+				if (this.GetComponent<Player> ().transform.position.x < target.transform.position.x)
+				{	
+					this.GetComponent<Player> ().StartCoroutine (Knockback (4f, -1, transform.position));
+				}
+			}
 		}
         if (target.tag == "Escada")
         {
@@ -82,16 +91,18 @@ public abstract class Character : MonoBehaviour {
         {
             abrir = true;
         }
-    }
+	}
 
-	void OnTriggerStay2D(Collider2D target){
+	public virtual void OnTriggerStay2D(Collider2D target)
+	{
 		if (target.tag == "Escada")
 		{
 		this.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
 		this.GetComponent<Rigidbody2D>().gravityScale = 0.0f;
 		}
 	}
-    void OnTriggerExit2D(Collider2D target)
+
+	public virtual void OnTriggerExit2D(Collider2D target)
     {
         if (target.tag == "Escada")
         {
@@ -100,22 +111,15 @@ public abstract class Character : MonoBehaviour {
 			this.GetComponent<Rigidbody2D>().gravityScale = 2.0f;
         }
     }
-	public IEnumerator Knockback(float knockDur, float knockbackPwr, Vector3 knockbackDir)
-	{
 
+	public IEnumerator Knockback(float knockDur, float knockbackPwr, Vector2 knockbackDir)
+	{
 		float timer = 0;
 
-		while (knockDur > timer)
-		{
-
+		while (knockDur > timer) {
 			timer += Time.deltaTime;
-
-			this.GetComponent<Rigidbody2D>().AddForce(new Vector3(knockbackDir.x * knockbackPwr , knockbackDir.y * knockbackPwr, transform.position.z));
-
-
+			this.GetComponent<Rigidbody2D> ().AddForce (new Vector2 (knockbackDir.x * knockbackPwr, knockbackDir.y * knockbackPwr/4));
 		}
-
 		yield return 0;
-
 	}
 }
