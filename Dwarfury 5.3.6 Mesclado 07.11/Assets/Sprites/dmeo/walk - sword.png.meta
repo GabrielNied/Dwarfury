@@ -1,0 +1,374 @@
+fileFormatVersion: 2
+guid: d3ce78260b5c97245bba0f7033994845
+timeCreated: 1478276081
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: walk - sword_0
+    21300002: walk - sword_1
+    21300004: walk - sword_2
+    21300006: walk - sword_3
+    21300008: walk - sword_4
+    21300010: walk - sword_5
+    21300012: walk - sword_6
+    21300014: walk - sword_7
+    21300016: walk - sword_8
+    21300018: walk - sword_9
+    21300020: walk - sword_10
+    21300022: walk - sword_11
+    21300024: walk - sword_12
+    21300026: walk - sword_13
+    21300028: walk - sword_14
+    21300030: walk - sword_15
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: walk - sword_0
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 198
+        width: 60
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -22, y: 20.5}
+        - {x: -30, y: 6.5}
+        - {x: -30, y: -17.5}
+        - {x: -24, y: -20.5}
+        - {x: 27, y: -20.5}
+        - {x: 30, y: -19.5}
+        - {x: 30, y: 14.5}
+        - {x: 28, y: 20.5}
+    - name: walk - sword_1
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 196
+        width: 56
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 28, y: 21}
+        - {x: -25, y: 21}
+        - {x: -28, y: 16}
+        - {x: -28, y: -18}
+        - {x: -21, y: -21}
+        - {x: 15, y: -21}
+        - {x: 18, y: -16}
+        - {x: 28, y: -13}
+    - name: walk - sword_2
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 198
+        width: 60
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -22, y: 20.5}
+        - {x: -30, y: 6.5}
+        - {x: -30, y: -17.5}
+        - {x: -24, y: -20.5}
+        - {x: 27, y: -20.5}
+        - {x: 30, y: -19.5}
+        - {x: 30, y: 14.5}
+        - {x: 28, y: 20.5}
+    - name: walk - sword_3
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 196
+        width: 64
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -24, y: 20.5}
+        - {x: -30, y: 11.5}
+        - {x: -32, y: 6.5}
+        - {x: -32, y: -8.5}
+        - {x: -29, y: -7.5}
+        - {x: -18, y: -15.5}
+        - {x: -14, y: -17.5}
+        - {x: -4, y: -19.5}
+        - {x: -1, y: -20.5}
+        - {x: 18, y: -20.5}
+        - {x: 32, y: -11.5}
+        - {x: 32, y: 13.5}
+        - {x: 24, y: 20.5}
+    - name: walk - sword_4
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 141
+        width: 33
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -16.5, y: 20.5}
+        - {x: -16.5, y: -18.5}
+        - {x: -15.5, y: -20.5}
+        - {x: 13.5, y: -20.5}
+        - {x: 16.5, y: -13.5}
+        - {x: 16.5, y: 20.5}
+    - name: walk - sword_5
+      rect:
+        serializedVersion: 2
+        x: 93
+        y: 141
+        width: 27
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: walk - sword_6
+      rect:
+        serializedVersion: 2
+        x: 154
+        y: 141
+        width: 33
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -16.5, y: 20.5}
+        - {x: -16.5, y: -18.5}
+        - {x: -15.5, y: -20.5}
+        - {x: 13.5, y: -20.5}
+        - {x: 16.5, y: -13.5}
+        - {x: 16.5, y: 20.5}
+    - name: walk - sword_7
+      rect:
+        serializedVersion: 2
+        x: 213
+        y: 141
+        width: 42
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -13, y: 20}
+        - {x: -21, y: 3}
+        - {x: -21, y: -20}
+        - {x: 17, y: -20}
+        - {x: 21, y: -19}
+        - {x: 21, y: 14}
+        - {x: 13, y: 20}
+    - name: walk - sword_8
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 78
+        width: 60
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -27, y: 23.5}
+        - {x: -30, y: 20.5}
+        - {x: -30, y: -19.5}
+        - {x: -28, y: -23.5}
+        - {x: 21, y: -23.5}
+        - {x: 30, y: -19.5}
+        - {x: 30, y: 23.5}
+    - name: walk - sword_9
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 75
+        width: 64
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 24, y: 1.5}
+        - {x: 30, y: -7.5}
+        - {x: 32, y: -7.5}
+        - {x: 32, y: 14.5}
+        - {x: 21, y: 23.5}
+        - {x: -21, y: 23.5}
+        - {x: -32, y: 10.5}
+        - {x: -32, y: -8.5}
+        - {x: -20, y: -23.5}
+        - {x: 20, y: -23.5}
+        - {x: 22, y: -6.5}
+        - {x: 19, y: 4.5}
+        - {x: 17, y: 6.5}
+    - name: walk - sword_10
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 78
+        width: 60
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -27, y: 23.5}
+        - {x: -30, y: 20.5}
+        - {x: -30, y: -19.5}
+        - {x: -28, y: -23.5}
+        - {x: 21, y: -23.5}
+        - {x: 30, y: -19.5}
+        - {x: 30, y: 23.5}
+    - name: walk - sword_11
+      rect:
+        serializedVersion: 2
+        x: 197
+        y: 79
+        width: 54
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 21, y: 22.5}
+        - {x: -18, y: 22.5}
+        - {x: -27, y: 16.5}
+        - {x: -27, y: -12.5}
+        - {x: -24, y: -10.5}
+        - {x: -11, y: -19.5}
+        - {x: -3, y: -18.5}
+        - {x: 0, y: -17.5}
+        - {x: 1, y: -20.5}
+        - {x: 3, y: -22.5}
+        - {x: 16, y: -22.5}
+        - {x: 26, y: -15.5}
+        - {x: 27, y: -13.5}
+        - {x: 27, y: 17.5}
+    - name: walk - sword_12
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 13
+        width: 33
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -12.5, y: 20.5}
+        - {x: -16.5, y: 16.5}
+        - {x: -16.5, y: -19.5}
+        - {x: -12.5, y: -20.5}
+        - {x: 16.5, y: -20.5}
+        - {x: 16.5, y: 7.5}
+        - {x: 13.5, y: 20.5}
+    - name: walk - sword_13
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 13
+        width: 27
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: walk - sword_14
+      rect:
+        serializedVersion: 2
+        x: 133
+        y: 13
+        width: 33
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -12.5, y: 20.5}
+        - {x: -16.5, y: 16.5}
+        - {x: -16.5, y: -19.5}
+        - {x: -12.5, y: -20.5}
+        - {x: 16.5, y: -20.5}
+        - {x: 16.5, y: 7.5}
+        - {x: 13.5, y: 20.5}
+    - name: walk - sword_15
+      rect:
+        serializedVersion: 2
+        x: 193
+        y: 13
+        width: 42
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -14, y: 20}
+        - {x: -21, y: 14}
+        - {x: -21, y: -13}
+        - {x: -20, y: -13}
+        - {x: -17, y: -12}
+        - {x: -11, y: -13}
+        - {x: -8, y: -12}
+        - {x: -9, y: -13}
+        - {x: -9, y: -16}
+        - {x: -7, y: -20}
+        - {x: 18, y: -20}
+        - {x: 21, y: -16}
+        - {x: 21, y: 4}
+        - {x: 13, y: 20}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

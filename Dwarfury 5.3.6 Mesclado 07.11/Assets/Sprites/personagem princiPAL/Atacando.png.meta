@@ -1,0 +1,388 @@
+fileFormatVersion: 2
+guid: ee1122eb926871b468c18595427b91fa
+timeCreated: 1477072004
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Atacando_0
+    21300002: Atacando_1
+    21300004: Atacando_2
+    21300006: Atacando_3
+    21300008: Atacando_4
+    21300010: Atacando_5
+    21300012: Atacando_6
+    21300014: Atacando_7
+    21300016: Atacando_8
+    21300018: Atacando_9
+    21300020: Atacando_10
+    21300022: Atacando_11
+    21300024: Atacando_12
+    21300026: Atacando_13
+    21300028: Atacando_14
+    21300030: Atacando_15
+    21300032: Atacando_16
+    21300034: Atacando_17
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: Atacando_0
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 401
+        width: 57
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -17.5, y: 31.5}
+        - {x: -26.5, y: 28.5}
+        - {x: -28.5, y: 13.5}
+        - {x: -28.5, y: -27.5}
+        - {x: -24.5, y: -31.5}
+        - {x: 21.5, y: -31.5}
+        - {x: 28.5, y: -22.5}
+        - {x: 28.5, y: 30.5}
+        - {x: 27.5, y: 31.5}
+    - name: Atacando_1
+      rect:
+        serializedVersion: 2
+        x: 115
+        y: 401
+        width: 57
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -28.5, y: -21.5}
+        - {x: -25.5, y: -31.5}
+        - {x: 21.5, y: -31.5}
+        - {x: 28.5, y: -22.5}
+        - {x: 28.5, y: 31.5}
+        - {x: -22.5, y: 31.5}
+        - {x: -28.5, y: 30.5}
+    - name: Atacando_2
+      rect:
+        serializedVersion: 2
+        x: 211
+        y: 401
+        width: 57
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -28.5, y: 31.5}
+        - {x: -28.5, y: -20.5}
+        - {x: -22.5, y: -31.5}
+        - {x: 21.5, y: -31.5}
+        - {x: 28.5, y: -22.5}
+        - {x: 28.5, y: 31.5}
+    - name: Atacando_3
+      rect:
+        serializedVersion: 2
+        x: 309
+        y: 401
+        width: 54
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -27, y: -15.5}
+        - {x: -23, y: -31.5}
+        - {x: 27, y: -31.5}
+        - {x: 27, y: 31.5}
+        - {x: -21, y: 31.5}
+        - {x: -27, y: 30.5}
+    - name: Atacando_4
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 305
+        width: 51
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -25.5, y: -22.5}
+        - {x: -24.5, y: -31.5}
+        - {x: 25.5, y: -31.5}
+        - {x: 25.5, y: 31.5}
+        - {x: -25.5, y: 31.5}
+    - name: Atacando_5
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 305
+        width: 51
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -25.5, y: -22.5}
+        - {x: -24.5, y: -31.5}
+        - {x: 25.5, y: -31.5}
+        - {x: 25.5, y: 31.5}
+        - {x: -25.5, y: 31.5}
+    - name: Atacando_6
+      rect:
+        serializedVersion: 2
+        x: 213
+        y: 305
+        width: 54
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -24, y: 31.5}
+        - {x: -27, y: 25.5}
+        - {x: -27, y: -23.5}
+        - {x: -23, y: -31.5}
+        - {x: 27, y: -31.5}
+        - {x: 27, y: 31.5}
+    - name: Atacando_7
+      rect:
+        serializedVersion: 2
+        x: 309
+        y: 305
+        width: 54
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -21, y: 31.5}
+        - {x: -27, y: 15.5}
+        - {x: -27, y: -30.5}
+        - {x: -24, y: -31.5}
+        - {x: 23, y: -31.5}
+        - {x: 27, y: -28.5}
+        - {x: 27, y: 31.5}
+    - name: Atacando_8
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 209
+        width: 57
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -16.5, y: 31.5}
+        - {x: -28.5, y: 17.5}
+        - {x: -28.5, y: -29.5}
+        - {x: -22.5, y: -31.5}
+        - {x: 21.5, y: -31.5}
+        - {x: 28.5, y: -23.5}
+        - {x: 28.5, y: 30.5}
+        - {x: 27.5, y: 31.5}
+    - name: Atacando_9
+      rect:
+        serializedVersion: 2
+        x: 117
+        y: 209
+        width: 54
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -21, y: 31.5}
+        - {x: -27, y: 15.5}
+        - {x: -27, y: -30.5}
+        - {x: -24, y: -31.5}
+        - {x: 23, y: -31.5}
+        - {x: 27, y: -28.5}
+        - {x: 27, y: 31.5}
+    - name: Atacando_10
+      rect:
+        serializedVersion: 2
+        x: 213
+        y: 209
+        width: 54
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -24, y: 31.5}
+        - {x: -27, y: 25.5}
+        - {x: -27, y: -23.5}
+        - {x: -23, y: -31.5}
+        - {x: 27, y: -31.5}
+        - {x: 27, y: 31.5}
+    - name: Atacando_11
+      rect:
+        serializedVersion: 2
+        x: 312
+        y: 209
+        width: 51
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -25.5, y: -22.5}
+        - {x: -24.5, y: -31.5}
+        - {x: 25.5, y: -31.5}
+        - {x: 25.5, y: 31.5}
+        - {x: -25.5, y: 31.5}
+    - name: Atacando_12
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 113
+        width: 51
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -25.5, y: -22.5}
+        - {x: -24.5, y: -31.5}
+        - {x: 25.5, y: -31.5}
+        - {x: 25.5, y: 31.5}
+        - {x: -25.5, y: 31.5}
+    - name: Atacando_13
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 113
+        width: 51
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -25.5, y: -22.5}
+        - {x: -24.5, y: -31.5}
+        - {x: 25.5, y: -31.5}
+        - {x: 25.5, y: 31.5}
+        - {x: -25.5, y: 31.5}
+    - name: Atacando_14
+      rect:
+        serializedVersion: 2
+        x: 213
+        y: 113
+        width: 54
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -27, y: -15.5}
+        - {x: -23, y: -31.5}
+        - {x: 27, y: -31.5}
+        - {x: 27, y: 31.5}
+        - {x: -21, y: 31.5}
+        - {x: -27, y: 30.5}
+    - name: Atacando_15
+      rect:
+        serializedVersion: 2
+        x: 307
+        y: 113
+        width: 57
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -28.5, y: 31.5}
+        - {x: -28.5, y: -20.5}
+        - {x: -22.5, y: -31.5}
+        - {x: 21.5, y: -31.5}
+        - {x: 28.5, y: -22.5}
+        - {x: 28.5, y: 31.5}
+    - name: Atacando_16
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 17
+        width: 57
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -28.5, y: -21.5}
+        - {x: -25.5, y: -31.5}
+        - {x: 21.5, y: -31.5}
+        - {x: 28.5, y: -22.5}
+        - {x: 28.5, y: 31.5}
+        - {x: -22.5, y: 31.5}
+        - {x: -28.5, y: 30.5}
+    - name: Atacando_17
+      rect:
+        serializedVersion: 2
+        x: 115
+        y: 17
+        width: 57
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -17.5, y: 31.5}
+        - {x: -26.5, y: 28.5}
+        - {x: -28.5, y: 13.5}
+        - {x: -28.5, y: -27.5}
+        - {x: -24.5, y: -31.5}
+        - {x: 21.5, y: -31.5}
+        - {x: 28.5, y: -22.5}
+        - {x: 28.5, y: 30.5}
+        - {x: 27.5, y: 31.5}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
