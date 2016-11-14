@@ -1,0 +1,30 @@
+[
+	{
+		"id": 0,
+		"title": "Espada",
+		"value": 1,
+		"stats":{
+			"ataque": 1,
+			"defesa": 1,
+			"vida": 0
+		},
+		"descricao": "Ta de brinkodi?",
+		"stackable": false,
+		"rarity": 1,
+		"slug": "espada"
+	},
+	{
+		"id": 1,
+		"title": "Cerveja",
+		"value": 1,
+		"stats":{
+			"ataque": 0,
+			"defesa": 0,
+			"vida": 5	
+		},
+		"descricao": "aaaahhh",
+		"stackable": true,
+		"rarity": 1,
+		"slug": "cerveja"
+	}
+]
