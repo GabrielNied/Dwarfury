@@ -9,8 +9,9 @@
 			"vida": 0
 		},
 		"descricao": "Ta de brinkodi?",
-		"stackable": false,
-		"rarity": 1,
+		"estacavel": false,
+		"raridade": "Comum",
+		"tipo": "Item",
 		"slug": "espada"
 	},
 	{
@@ -22,9 +23,70 @@
 			"defesa": 0,
 			"vida": 5	
 		},
-		"descricao": "aaaahhh",
-		"stackable": true,
-		"rarity": 1,
+		"descricao": "Desce Redondo",
+		"estacavel": true,
+		"raridade": "Comum",
+		"tipo": "Consumível",
 		"slug": "cerveja"
+	},
+	{
+	"id": 2,
+	"title": "Espada Gigantemente Gigante",
+	"value": 100,
+	"stats":{
+		"ataque": 100,
+		"defesa": 0,
+		"vida": 0	
+	},
+	"descricao": "hummmm",
+	"estacavel": false,
+	"raridade": "Lendário",
+	"tipo": "Item",
+	"slug": "espada_gigantemente_gigante"
+	},
+	{
+	"id": 3,
+	"title": "Porrete do Negaum",
+	"value": 75,
+	"stats":{
+		"ataque": 15,
+		"defesa": 20,
+		"vida": 0	
+	},
+	"descricao": "Q paulada",
+	"estacavel": false,
+	"raridade": "Épico",
+	"tipo": "Item",
+	"slug": "porrete_do_negaum"
+	},
+	{
+	"id": 4,
+	"title": "Machado Arremessador",
+	"value": 50,
+	"stats":{
+		"ataque": 10,
+		"defesa": 5,
+		"vida": 0	
+	},
+	"descricao": "Te arremesa",
+	"estacavel": false,
+	"raridade": "Raro",
+	"tipo": "Item",
+	"slug": "machado_arremessador"
+	},
+	{
+	"id": 5,
+	"title": "Peixera",
+	"value": 5,
+	"stats":{
+		"ataque": 5,
+		"defesa": 5,
+		"vida": 0	
+	},
+	"descricao": "Oxi Mainha",
+	"estacavel": false,
+	"raridade": "Incomum",
+	"tipo": "Item",
+	"slug": "espadowm"
 	}
 ]

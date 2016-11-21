@@ -12,8 +12,6 @@ public class ItemDatabase : MonoBehaviour {
 	{
 		itemData = JsonMapper.ToObject(File.ReadAllText(Application.dataPath + "/StreamingAssets/Items.json"));
 		ConstructItemDatabase();
-
-		Debug.Log (FetchItemByID(0).Descricao);
 	}
 
 	public Item FetchItemByID(int id)
@@ -31,7 +29,7 @@ public class ItemDatabase : MonoBehaviour {
 		{
 			database.Add(new Item((int)itemData[i]["id"], itemData[i]["title"].ToString(), (int)itemData[i]["value"],
 				(int)itemData[i]["stats"]["ataque"], (int)itemData[i]["stats"]["defesa"], (int)itemData[i]["stats"]["vida"], itemData[i]["descricao"].ToString(),
-				(bool)itemData[i]["stackable"], (int)itemData[i]["rarity"], itemData[i]["slug"].ToString()));
+				(bool)itemData[i]["estacavel"], itemData[i]["raridade"].ToString(), itemData[i]["tipo"].ToString(), itemData[i]["slug"].ToString()));
 		}
 	}
 }
@@ -45,12 +43,13 @@ public class Item
 	public int Defesa { get; set; }
 	public int Vida { get; set; }
 	public string Descricao { get; set; }
-	public bool Stackable { get; set; }
-	public int Rarity { get; set; }
+	public bool Estacavel { get; set; }
+	public string Raridade { get; set; }
+	public string Tipo { get; set; }
 	public string Slug { get; set; }
 	public Sprite Sprite { get; set; }
 
-	public Item(int id, string title, int value, int ataque, int defesa, int vida, string descricao, bool stackable, int rarity, string slug)
+	public Item(int id, string title, int value, int ataque, int defesa, int vida, string descricao, bool estacavel, string raridade, string tipo, string slug)
 	{
 		this.ID = id;
 		this.Title = title;
@@ -59,8 +58,9 @@ public class Item
 		this.Defesa = defesa;
 		this.Vida = vida;
 		this.Descricao = descricao;
-		this.Stackable = stackable;
-		this.Rarity = rarity;
+		this.Estacavel = estacavel;
+		this.Raridade = raridade;
+		this.Tipo = tipo;
 		this.Slug = slug;
 		this.Sprite = Resources.Load<Sprite>("Sprites/Items/" + slug);
 	}

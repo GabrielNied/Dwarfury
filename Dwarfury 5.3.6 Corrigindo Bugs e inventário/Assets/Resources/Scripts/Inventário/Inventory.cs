@@ -7,10 +7,14 @@ public class Inventory : MonoBehaviour
 {
 	GameObject inventoryPanel;
 	GameObject slotPanel;
+
 	ItemDatabase database;
+	ItemData itemdata;
+
 	public GameObject inventorySlot;
 	public GameObject inventoryItem;
 
+	public bool noInv = false;
 	int slotAmount;
 	public List<Item> items = new List<Item>();
 	public List<GameObject> slots = new List<GameObject> ();
@@ -18,6 +22,7 @@ public class Inventory : MonoBehaviour
 	void Start()
 	{
 		database = GetComponent<ItemDatabase> ();
+		itemdata = GetComponent<ItemData> ();
 
 		slotAmount = 12;
 		inventoryPanel = GameObject.Find ("Inventory Panel");
@@ -36,12 +41,34 @@ public class Inventory : MonoBehaviour
 		AddItem (1);
 		AddItem (1);
 		AddItem (1);
+		AddItem (2);
+		AddItem (2);
+		AddItem (3);
+		AddItem (4);
+		AddItem (5);
+	}
+		
+	void Update(){
+		if (Input.GetKeyDown(KeyCode.I))
+		{
+			noInv = !noInv;
+		}
+
+		if (noInv)
+		{
+			inventoryPanel.SetActive(true);
+		}
+
+		if (!noInv)
+		{
+			inventoryPanel.SetActive(false);
+		}
 	}
 
 	public void AddItem(int id)
 	{
 		Item itemToAdd = database.FetchItemByID (id);
-		if (itemToAdd.Stackable && CheckIfItemIsInInventory(itemToAdd))
+		if (itemToAdd.Estacavel && CheckIfItemIsInInventory(itemToAdd))
 		{
 			for (int i = 0; i < items.Count; i++)
 			{

@@ -38,13 +38,11 @@ public class SkillManager : MonoBehaviour {
 		if (paused)
 		{
 			SkillMenu.SetActive(true);
-			Time.timeScale = 0;
 		}
 
 		if (!paused)
 		{
 			SkillMenu.SetActive(false);
-			Time.timeScale = 1;
 		}
 		Pontos.text = "Pontos " + player.skillpoint; 
 		Ofensivo.text = "Ofensivo " + ofensivo; 
