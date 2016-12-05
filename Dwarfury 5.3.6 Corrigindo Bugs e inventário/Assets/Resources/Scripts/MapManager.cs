@@ -16,7 +16,7 @@ public class MapManager : MonoBehaviour {
 	public GameObject Bloco32;
 	public GameObject Bloco33;
 
-	void Start () {
+	void Awake () {
 		int choice = Random.Range(0, 3); //random entre 0 e 3
 		Debug.Log ("Bloco1: "+choice);
 		switch (choice)

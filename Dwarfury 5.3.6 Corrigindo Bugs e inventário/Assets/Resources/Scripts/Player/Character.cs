@@ -64,10 +64,12 @@ public abstract class Character : MonoBehaviour {
 		{
 			if (!IsDead)
 			{
+				
 				StartCoroutine (TakeDamage ());
 
 				Debug.Log ("chamou");
-				/*
+
+
 				//Debug.Log ("PlayerPos " + this.GetComponent<Player> ().transform.position.x);
 				//Debug.Log ("EspinhosPos " + target.transform.position.x);
 				//Debug.Log ("EspinhosLocalPos " + target.transform.localPosition.x);
@@ -75,14 +77,13 @@ public abstract class Character : MonoBehaviour {
 				//Se o player está vindo da esquerda
 				if (this.GetComponent<Player> ().transform.position.x >= target.transform.position.x)
 				{	
-					this.GetComponent<Player> ().StartCoroutine (Knockback (0.02f, 100, transform.position));
+					this.GetComponent<Player> ().myRigidbody.AddForce(transform.right * 1000);
 				}
 				//Se o player está vindo da direita
 				if (this.GetComponent<Player> ().transform.position.x < target.transform.position.x)
 				{	
-					this.GetComponent<Player> ().StartCoroutine (Knockback (0.02f, -100, transform.position));
+					this.GetComponent<Player> ().myRigidbody.AddForce(-transform.right * 1000);
 				}
-				*/
 
 			}
 		}

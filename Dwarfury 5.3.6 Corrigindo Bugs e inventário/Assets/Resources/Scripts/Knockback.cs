@@ -3,14 +3,9 @@ using System.Collections;
 
 public class Knockback : MonoBehaviour {
 
+	Rigidbody2D myrigidbody2d;
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+	public void knock(){
+		myrigidbody2d.AddForce (-transform.forward * 1000, ForceMode2D.Impulse);
 	}
 }

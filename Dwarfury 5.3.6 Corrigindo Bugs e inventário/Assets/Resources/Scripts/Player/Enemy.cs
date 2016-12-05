@@ -20,8 +20,8 @@ public class Enemy : Character {
 
     private Rigidbody2D myRigidbody;
 
-    int enemyhealth = 10;
-    public int enemyatk = 2;
+    public int enemyhealth = 10;
+    public int enemyatk = 1;
     int enemydef = 0;
     public bool InMeleeRange{
 		get{
@@ -150,15 +150,16 @@ public class Enemy : Character {
     {
 		Debug.Log ("Chamou2");
         enemyhealth -= player.atk;
-        FloatingTextController.CreateFloatingText(player.atk.ToString(), transform);
 
         if (!IsDead) {
 			MyAnimator.SetTrigger ("damage");
 
 		} else {
 			MyAnimator.SetTrigger("die");
+			Debug.Log ("Chamou2");
            // this.gameObject.tag = "Untagged";
             player.exp += 1;
+			player.gold += Random.Range(1, 11);
             boxCollider2D.enabled = !boxCollider2D.enabled;
             //myRigidbody.velocity = new Vector2(0, 0);
             GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY;

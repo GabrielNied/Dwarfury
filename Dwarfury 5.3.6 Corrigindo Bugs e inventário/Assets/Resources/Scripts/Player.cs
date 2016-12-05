@@ -24,7 +24,7 @@ public class Player : Character {
             return instance;
         }
     }
-    private Rigidbody2D myRigidbody;
+    public Rigidbody2D myRigidbody;
 
     public event DeadEventHandler Dead;
 
@@ -118,9 +118,13 @@ public class Player : Character {
 
 	void Update()
 	{
+		
 		Debug.Log ("IsGrounded" + isGrounded);
     PlayerPrefs.SetInt("Exp", exp);
 
+		if (TakingDamage) {
+			myRigidbody.AddForce (transform.position * -1, ForceMode2D.Impulse);
+		}
         if (!TakingDamage && !IsDead && !LevelingUp)
 		{
 			if (transform.position.y <= -14f)
@@ -327,19 +331,12 @@ public class Player : Character {
         }
     }
 
-
 	public override IEnumerator TakeDamage(){
         if (!immortal)
         {
+
             health -= enemy.enemyatk;
-
-		if (GameObject.FindGameObjectWithTag ("Espinhos"))
-			{
-				health -= 1;
-			} else {
-				health -= enemy.enemyatk;
-			}
-
+			//myRigidbody.AddForce (-transform.forward * 1000);
             if (!IsDead)
             {
                     MyAnimator.SetTrigger("damage");

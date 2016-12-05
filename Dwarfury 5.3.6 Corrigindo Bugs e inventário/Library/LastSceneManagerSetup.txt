@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/Vila 1.unity
+- path: Assets/Scenes/Dwarfury.unity
   isLoaded: 1
   isActive: 1
