@@ -4,13 +4,14 @@ using System.Collections.Generic;
 
 public delegate void DeadEventHandler();
 
-public class Player : Character {
+public class Player : Character
+{
     private Enemy enemy;
     private LevelLoader lvl;
 
-	public GameObject canvasBoard;
-	public GameObject jumpParticle;
-	public Transform playersfeet;
+    public GameObject canvasBoard;
+    public GameObject jumpParticle;
+    public Transform playersfeet;
 
     private static Player instance;
     public static Player Instance
@@ -40,18 +41,18 @@ public class Player : Character {
     private bool attack;
     private bool isGrounded;
     private bool jump;
-	private bool jump2;
-	private bool pulando;
+    private bool jump2;
+    private bool pulando;
     //private bool isDashKeyDown;
     private bool immortal = false;
 
     private SpriteRenderer spriteRenderer;
 
     [SerializeField]
-	private Transform[] groundPoints;
+    private Transform[] groundPoints;
 
     [SerializeField]
-	private LayerMask whatIsGround;
+    private LayerMask whatIsGround;
 
     [SerializeField]
     private float groundRadius;
@@ -60,97 +61,100 @@ public class Player : Character {
     private float immortalTime;
 
     [SerializeField]
-	private float jumpForce;
+    private float jumpForce;
 
-	[SerializeField]
-	private float dashForce;
+    [SerializeField]
+    private float dashForce;
 
     public int health;
     public int atk;
     public int def;
-	public int maxhealth;
+    public int maxhealth;
     public int basehealth;
     public int baseatk;
     public int basedef;
-	public int level = 1;
+    public int level = 1;
     public int exp = 0;
     public int maxexp = 10;
-	public int skillpoint;
-	public int gold;
+    public int skillpoint;
+    public int gold;
 
-	public FadeManager fM;
+    public FadeManager fM;
 
     private GUIStyle guiStyle = new GUIStyle();
 
-  public override void Start ()
-	{
-		fM.Fade (false, 2.0f);
+    public override void Start()
+    {
+        fM.Fade(false, 2.0f);
 
-		if (Application.loadedLevel == 1)
-		{
-			randomStats ();
+        if (Application.loadedLevel == 1)
+        {
+            randomStats();
 
-			PlayerPrefs.SetInt ("Vida", basehealth);
-			PlayerPrefs.SetInt ("Atq", baseatk);
-			PlayerPrefs.SetInt ("Def", basedef);
-			health = basehealth;
-			maxhealth = basehealth;
-			atk = baseatk;
-			def = basedef;
-		}
-		enemy = FindObjectOfType<Enemy>();
-        base.Start ();
+            PlayerPrefs.SetInt("Vida", basehealth);
+            PlayerPrefs.SetInt("Atq", baseatk);
+            PlayerPrefs.SetInt("Def", basedef);
+            health = basehealth;
+            maxhealth = basehealth;
+            atk = baseatk;
+            def = basedef;
+        }
+        enemy = FindObjectOfType<Enemy>();
+        base.Start();
 
         spriteRenderer = GetComponent<SpriteRenderer>();
-		myRigidbody = GetComponent<Rigidbody2D> ();
+        myRigidbody = GetComponent<Rigidbody2D>();
 
         exp = PlayerPrefs.GetInt("Exp");
 
 
-	}
+    }
 
-	void Awake(){
-		health = PlayerPrefs.GetInt("Vida1");
-		maxhealth = PlayerPrefs.GetInt("Vida2");
-		atk = PlayerPrefs.GetInt("Atq1");
-		def = PlayerPrefs.GetInt("Def1");
-	}
+    void Awake()
+    {
+        health = PlayerPrefs.GetInt("Vida1");
+        maxhealth = PlayerPrefs.GetInt("Vida2");
+        atk = PlayerPrefs.GetInt("Atq1");
+        def = PlayerPrefs.GetInt("Def1");
+    }
 
-	void Update()
-	{
-		
-		Debug.Log ("IsGrounded" + isGrounded);
-    PlayerPrefs.SetInt("Exp", exp);
+    void Update()
+    {
 
-		if (TakingDamage) {
-			myRigidbody.AddForce (transform.position * -1, ForceMode2D.Impulse);
-		}
+        PlayerPrefs.SetInt("Exp", exp);
+
+        if (TakingDamage)
+        {
+            myRigidbody.AddForce(transform.position * -1, ForceMode2D.Impulse);
+        }
         if (!TakingDamage && !IsDead && !LevelingUp)
-		{
-			if (transform.position.y <= -14f)
-			{
-				myRigidbody.velocity = Vector2.zero;
-			}
-			HandleInput ();
-		}
-	}
-		
-	void FixedUpdate () {
-		if (!TakingDamage && !IsDead && !LevelingUp) {
-			isGrounded = IsGrounded ();
-			float horizontal = Input.GetAxis ("Horizontal");
+        {
+            if (transform.position.y <= -14f)
+            {
+                myRigidbody.velocity = Vector2.zero;
+            }
+            HandleInput();
+        }
+    }
+
+    void FixedUpdate()
+    {
+        if (!TakingDamage && !IsDead && !LevelingUp)
+        {
+            isGrounded = IsGrounded();
+            float horizontal = Input.GetAxis("Horizontal");
             levelup();
 
-          
 
-			HandleMovement (horizontal);
-			HandleMovementEscada ();
-			Flip (horizontal);
 
-			HandleAttacks ();
-		}
-		ResetValues ();
-	}
+            HandleMovement(horizontal);
+            HandleMovementEscada();
+            Flip(horizontal);
+
+            HandleAttacks();
+        }
+        ResetValues();
+    }
 
     public void OnDead()
     {
@@ -164,26 +168,28 @@ public class Player : Character {
     {
         //		if (!this.myAnimator.GetCurrentAnimatorStateInfo (0).IsTag ("Attack")) {                                     PARA MOVIMENTAÇÃO QUANDO ATACA
 
-            myRigidbody.velocity = new Vector2(horizontal * movementSpeed, myRigidbody.velocity.y);
+        myRigidbody.velocity = new Vector2(horizontal * movementSpeed, myRigidbody.velocity.y);
 
 
-            MyAnimator.SetFloat("speed", Mathf.Abs(horizontal));
-            //		}																											PARA MOVIMENTAÇÃO QUANDO ATACA
+        MyAnimator.SetFloat("speed", Mathf.Abs(horizontal));
+        //		}																											PARA MOVIMENTAÇÃO QUANDO ATACA
 
-           if (pulando && jump2 && !isGrounded)
-		{
-			Instantiate (jumpParticle, playersfeet.position, Quaternion.identity);
-			myRigidbody.velocity = new Vector2 (0, jumpForce / 50);
-			pulando = false;
-		} else {
-			if (isGrounded && jump)
-			{
-				//isGrounded = false;
-				myRigidbody.AddForce (new Vector2 (0, jumpForce));
-				pulando = true;
-			}
-		}
-	}
+        if (pulando && jump2 && !isGrounded)
+        {
+            Instantiate(jumpParticle, playersfeet.position, Quaternion.identity);
+            myRigidbody.velocity = new Vector2(0, jumpForce / 50);
+            pulando = false;
+        }
+        else
+        {
+            if (isGrounded && jump)
+            {
+                //isGrounded = false;
+                myRigidbody.AddForce(new Vector2(0, jumpForce));
+                pulando = true;
+            }
+        }
+    }
 
     /*            switch (dashState)
                 {
@@ -226,18 +232,20 @@ public class Player : Character {
     }
     */
 
-    private void HandleAttacks(){
-//		if (attack && !this.myAnimator.GetCurrentAnimatorStateInfo (0).IsTag ("Attack")) {							 PARA MOVIMENTAÇÃO QUANDO ATACA
-		if (attack && !this.MyAnimator.GetCurrentAnimatorStateInfo (0).IsTag ("Attack")) {
-			MyAnimator.SetTrigger ("attack");
-			CombatTextManager.Instance.CreateText(myRigidbody.transform.position, ""+atk);
-			Debug.Log ("Posição " + myRigidbody.transform.position);
-//			myRigidbody.velocity = Vector2.zero;																 PARA MOVIMENTAÇÃO QUANDO ATACA
-		}
-	}
+    private void HandleAttacks()
+    {
+        //		if (attack && !this.myAnimator.GetCurrentAnimatorStateInfo (0).IsTag ("Attack")) {							 PARA MOVIMENTAÇÃO QUANDO ATACA
+        if (attack && !this.MyAnimator.GetCurrentAnimatorStateInfo(0).IsTag("Attack"))
+        {
+            MyAnimator.SetTrigger("attack");
+            CombatTextManager.Instance.CreateText(myRigidbody.transform.position, "" + atk);
+            Debug.Log("Posição " + myRigidbody.transform.position);
+            //			myRigidbody.velocity = Vector2.zero;																 PARA MOVIMENTAÇÃO QUANDO ATACA
+        }
+    }
 
 
-	/*
+    /*
 	private void HandleMovementBau(){
 		if (abrir == true) {
 			if (Input.GetKey(KeyCode.E)) {
@@ -249,81 +257,96 @@ public class Player : Character {
 
 	private void HandleMovementEscada()
 	{
-		
-		if (subir == true) {
-			if (Input.GetKey(KeyCode.W)) {
+
+		if (subir == true)
+		{
+			if (Input.GetButton("Subir"))
+			{
 				myRigidbody.velocity = new Vector2(myRigidbody.velocity.x, 1 * movementSpeed / 2);
 			}
 		}
 
-		if (descer == true) {
-			if (Input.GetKey(KeyCode.S)) {
+		if (descer == true)
+		{
+			if (Input.GetButton("Descer"))
+			{
 				myRigidbody.velocity = new Vector2(myRigidbody.velocity.x, -2 * movementSpeed / 2);
 			}
 		}
 	}
 
-	private void HandleInput(){
-		if (Input.GetKeyDown (KeyCode.Mouse0))
-		{
-			attack = true;
-		}
+    private void HandleInput()
+    {
+		if (Input.GetButtonDown("Ataca"))
+        {
+            attack = true;
+        }
 
-		if (Input.GetKeyDown (KeyCode.Space))
-		{
-			jump = true;
-		}
+		if (!subir || !descer) { 
+			if (Input.GetButtonDown ("Pular")) {
+				jump = true;
+			}
 
-		if (Input.GetKeyDown (KeyCode.Space))
-		{
-			jump2 = true;
-		}
-
-//        if (Input.GetKeyDown(KeyCode.E))
-//    {
-//        isDashKeyDown = true;
-//    }
-	}
-
-	private void Flip(float horizontal){
-		if (horizontal > 0 && !facingRight || horizontal < 0 && facingRight) {
-			ChangeDirection ();
-			if (!facingRight) {
-				canvasBoard.transform.localScale = new Vector3 (-0.004f, 0.004f, 0.004f);
-			} else {
-				canvasBoard.transform.localScale = new Vector3 (0.004f, 0.004f, 0.004f);
+			if (Input.GetButtonDown ("Pular")) {
+				jump2 = true;
 			}
 		}
-	}
 
-	private void ResetValues(){
-		attack = false;
-       // isDashKeyDown = false;
-		jump = false;
-		jump2 = false;
-	}
+        //        if (Input.GetKeyDown(KeyCode.E))
+        //    {
+        //        isDashKeyDown = true;
+        //    }
+    }
 
-	private bool IsGrounded(){
-	//	if (myRigidbody.velocity.y <= 0) {
-			foreach (Transform point in groundPoints) {
-				Collider2D[] colliders = Physics2D.OverlapCircleAll (point.position, groundRadius, whatIsGround);
+    private void Flip(float horizontal)
+    {
+        if (horizontal > 0 && !facingRight || horizontal < 0 && facingRight)
+        {
+            ChangeDirection();
+            if (!facingRight)
+            {
+                canvasBoard.transform.localScale = new Vector3(-0.004f, 0.004f, 0.004f);
+            }
+            else
+            {
+                canvasBoard.transform.localScale = new Vector3(0.004f, 0.004f, 0.004f);
+            }
+        }
+    }
 
-				for (int i = 0; i < colliders.Length; i++) {
-					if (colliders [i].gameObject != gameObject) {
-						return true;
-		//			}
-				}
-			}
-		}
-		return false;
-	}
+    private void ResetValues()
+    {
+        attack = false;
+        // isDashKeyDown = false;
+        jump = false;
+        jump2 = false;
+    }
+
+    private bool IsGrounded()
+    {
+        //	if (myRigidbody.velocity.y <= 0) {
+        foreach (Transform point in groundPoints)
+        {
+            Collider2D[] colliders = Physics2D.OverlapCircleAll(point.position, groundRadius, whatIsGround);
+
+            for (int i = 0; i < colliders.Length; i++)
+            {
+                if (colliders[i].gameObject != gameObject)
+                {
+                    return true;
+                    //			}
+                }
+            }
+        }
+        return false;
+    }
 
     private IEnumerator IndicateImmortal()
     {
         while (immortal)
         {
             spriteRenderer.enabled = !spriteRenderer.enabled;
-          //  spriteRenderer.enable = false;
+            //  spriteRenderer.enable = false;
             yield return new WaitForSeconds(.1f);
             spriteRenderer.enabled = !spriteRenderer.enabled;
             //spriteRenderer.enable = true;
@@ -331,43 +354,47 @@ public class Player : Character {
         }
     }
 
-	public override IEnumerator TakeDamage(){
+    public override IEnumerator TakeDamage()
+    {
         if (!immortal)
         {
 
             health -= enemy.enemyatk;
-			//myRigidbody.AddForce (-transform.forward * 1000);
+            //myRigidbody.AddForce (-transform.forward * 1000);
             if (!IsDead)
             {
-                    MyAnimator.SetTrigger("damage");
-                    immortal = true;
+                MyAnimator.SetTrigger("damage");
+                immortal = true;
 
-                    StartCoroutine(IndicateImmortal());
-                    yield return new WaitForSeconds(immortalTime);
+                StartCoroutine(IndicateImmortal());
+                yield return new WaitForSeconds(immortalTime);
 
-                    immortal = false;
-                }
+                immortal = false;
             }
-
         }
-	
 
-	public override bool IsDead{
-		get{
-            if (health <= 0) {
+    }
+
+
+    public override bool IsDead
+    {
+        get
+        {
+            if (health <= 0)
+            {
                 GetComponent<PolygonCollider2D>().enabled = false;
                 GetComponent<BoxCollider2D>().enabled = true;
                 exp = 0;
                 MyAnimator.SetTrigger("die");
                 OnDead();
                 this.GetComponent<Rigidbody2D>().gravityScale = 0.0f;
-                myRigidbody.velocity = new Vector2(0 * 0, 1*1);
+                myRigidbody.velocity = new Vector2(0 * 0, 1 * 1);
                 spriteRenderer.color = new Color(1f, 1f, 1f, .5f);
-               // GetComponent<SpriteRenderer>().color = Color.yellow;
+                // GetComponent<SpriteRenderer>().color = Color.yellow;
             }
             return health <= 0;
-		}
-	}
+        }
+    }
     public void randomStats()
     {
         baseatk = 1;
@@ -396,8 +423,8 @@ public class Player : Character {
         }
     }
 
-    
-   public void levelup()
+
+    public void levelup()
     {
         if (exp >= maxexp)
         {
@@ -407,8 +434,8 @@ public class Player : Character {
             health += 1;
             maxhealth += 1;
             MyAnimator.SetTrigger("levelup");
-			skillpoint += 1;
-			level += 1;
+            skillpoint += 1;
+            level += 1;
         }
 
     }

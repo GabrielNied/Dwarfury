@@ -23,12 +23,13 @@ public class FadeManager : MonoBehaviour {
 		isInTransition = true;
 		this.duration = duration;
 		transition = (isShowing) ? 0 : 1;
+		Debug.Log("Chamou");
 	}
 
 	private void Update(){
 			//Fade (true, 1.25f);
 			//Fade (false, 3.0f);
-		
+
 			
 		if (!isInTransition)
 			return;

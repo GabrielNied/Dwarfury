@@ -67,9 +67,6 @@ public abstract class Character : MonoBehaviour {
 				
 				StartCoroutine (TakeDamage ());
 
-				Debug.Log ("chamou");
-
-
 				//Debug.Log ("PlayerPos " + this.GetComponent<Player> ().transform.position.x);
 				//Debug.Log ("EspinhosPos " + target.transform.position.x);
 				//Debug.Log ("EspinhosLocalPos " + target.transform.localPosition.x);

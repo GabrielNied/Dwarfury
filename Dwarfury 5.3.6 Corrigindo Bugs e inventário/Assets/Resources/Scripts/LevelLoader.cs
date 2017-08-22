@@ -8,14 +8,17 @@ public class LevelLoader : MonoBehaviour {
     public string levelToLoad;
 	public Player player;
 	public FadeManager fM;
-	// Use this for initialization
+
+	public GameObject botaoE;
+
 	void Start () {
         playerInZone = false;
 	}
 	
-	// Update is called once per frame
+
 	void Update () {
-		if(Input.GetKeyDown(KeyCode.E) && playerInZone)
+		
+		if(Input.GetButtonDown ("TrocarFase") && playerInZone)
         {
 			fM.Fade (true, 3.0f);
 			PlayerPrefs.SetInt ("Vida1", player.health);
@@ -23,10 +26,9 @@ public class LevelLoader : MonoBehaviour {
 			PlayerPrefs.SetInt ("Atq1", player.atk);
 			PlayerPrefs.SetInt ("Def1", player.def);
 			StartCoroutine (Wait(3.0f));
-
-
         }
 	}
+
 	IEnumerator Wait(float waitTime){
 		yield return new WaitForSeconds (waitTime);
 		Application.LoadLevel(levelToLoad);
@@ -37,6 +39,7 @@ public class LevelLoader : MonoBehaviour {
         if (other.name == "Player")
         {
             playerInZone = true;
+			botaoE.SetActive(true);
         }
     }
     void OnTriggerExit2D(Collider2D other)
@@ -44,6 +47,7 @@ public class LevelLoader : MonoBehaviour {
         if (other.name == "Player")
         {
             playerInZone = false;
+			botaoE.SetActive(false);
         }
     }
 

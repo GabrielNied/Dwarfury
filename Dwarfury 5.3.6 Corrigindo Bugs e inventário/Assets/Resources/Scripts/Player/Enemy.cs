@@ -148,7 +148,6 @@ public class Enemy : Character {
 
     public override IEnumerator TakeDamage()
     {
-		Debug.Log ("Chamou2");
         enemyhealth -= player.atk;
 
         if (!IsDead) {
@@ -156,7 +155,6 @@ public class Enemy : Character {
 
 		} else {
 			MyAnimator.SetTrigger("die");
-			Debug.Log ("Chamou2");
            // this.gameObject.tag = "Untagged";
             player.exp += 1;
 			player.gold += Random.Range(1, 11);
