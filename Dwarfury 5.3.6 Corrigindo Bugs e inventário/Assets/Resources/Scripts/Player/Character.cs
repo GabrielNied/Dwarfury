@@ -32,6 +32,7 @@ public abstract class Character : MonoBehaviour {
     public bool subir = false;
     public bool descer = false;
     public bool abrir = false;
+	public bool abriu = false;
 
     public virtual void Start() 
 	{
@@ -88,20 +89,38 @@ public abstract class Character : MonoBehaviour {
         {
             subir = true;
             descer = true;
-        }
+        }		      
 
-        if (target.tag == "Bau")
-        {
-            abrir = true;
-        }
+		if (target.tag == "BauAberto")
+		{
+			abrir = false;	
+			abriu = false;
+		}
 	}
 
 	public virtual void OnTriggerStay2D(Collider2D target)
 	{
-		if (target.tag == "Escada")
+		if (target.tag == "Escada") {
+				subir = true;
+				descer = true;
+				MyAnimator.SetBool ("naEscada", true);
+				this.GetComponent<Rigidbody2D> ().velocity = Vector2.zero;
+				this.GetComponent<Rigidbody2D> ().gravityScale = 0.0f;
+			}
+
+		if (target.tag == "BauAberto")
 		{
-		this.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-		this.GetComponent<Rigidbody2D>().gravityScale = 0.0f;
+			abrir = false;	
+			abriu = false;
+		}
+
+		if (target.tag == "Bau")
+		{
+			abrir = true;
+
+			if (abriu == true) {
+				target.tag = "BauAberto";
+			}
 		}
 	}
 
@@ -109,10 +128,16 @@ public abstract class Character : MonoBehaviour {
     {
         if (target.tag == "Escada")
         {
+			MyAnimator.SetBool ("naEscada", false);
             subir = false;
             descer = false;
 			this.GetComponent<Rigidbody2D>().gravityScale = 2.0f;
         }
+
+		if (target.tag == "Bau")
+		{
+			abrir = false;
+		}
     }
 
 	public IEnumerator Knockback(float knockDur, float knockbackPwr, Vector2 knockbackDir)
@@ -121,7 +146,6 @@ public abstract class Character : MonoBehaviour {
 
 		while (knockDur > timer) {
 			timer += Time.deltaTime;
-			Debug.Log ("Tempo " + Time.deltaTime);
 			this.GetComponent<Rigidbody2D> ().AddForce (new Vector2 (knockbackDir.x * knockbackPwr, knockbackDir.y * knockbackPwr));
 		}
 		yield return 0;

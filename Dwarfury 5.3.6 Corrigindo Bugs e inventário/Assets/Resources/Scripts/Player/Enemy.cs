@@ -1,11 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement; 
 
 public class Enemy : Character {
+	
     private Player player;
 	private FloatingTextController ftc;
     private IEnemyState currentState;
-
+	private ScoreManager scoreManager;
+	private QuestManager questManager;
     public GameObject Target { get; set; }
 	[SerializeField]
 	private float meleeRange;
@@ -36,6 +39,8 @@ public class Enemy : Character {
 	public override void Start () {
         FloatingTextController.Initialize();
         player = FindObjectOfType<Player>();
+		scoreManager = FindObjectOfType<ScoreManager>();
+		questManager = FindObjectOfType<QuestManager>();
        // player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
 		base.Start ();
 
@@ -156,8 +161,14 @@ public class Enemy : Character {
 		} else {
 			MyAnimator.SetTrigger("die");
            // this.gameObject.tag = "Untagged";
-            player.exp += 1;
-			player.gold += Random.Range(1, 11);
+			if (SceneManager.GetActiveScene () == SceneManager.GetSceneByName ("Dwarfury")) {
+				player.exp += 1;
+				player.gold += Random.Range (0, 2);
+				scoreManager.inimigosMortos += 1;
+			}
+			if (questManager.GetComponent<QuestManager> ().quest == true) {
+				questManager.GetComponent<QuestManager> ().kills += 1;
+			}
             boxCollider2D.enabled = !boxCollider2D.enabled;
             //myRigidbody.velocity = new Vector2(0, 0);
             GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY;

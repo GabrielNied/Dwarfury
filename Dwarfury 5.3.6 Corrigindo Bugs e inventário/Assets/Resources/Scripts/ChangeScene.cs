@@ -16,6 +16,8 @@ public class ChangeScene : MonoBehaviour {
 		PlayerPrefs.SetInt ("Vida2", player.maxhealth);
 		PlayerPrefs.SetInt ("Atq1", player.atk);
 		PlayerPrefs.SetInt ("Def1", player.def);
+		PlayerPrefs.SetInt("Gold1", player.gold);
+		PlayerPrefs.SetInt("Level1", player.level);
 		StartCoroutine (Wait(3.0f));
 	
 	}

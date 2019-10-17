@@ -7,9 +7,13 @@ public class menuScript : MonoBehaviour {
 
     public Canvas quitMenu;
 	public Canvas creditsCanvas;
+	public Canvas achievementCanvas;
+	public Canvas progressCanvas;
     public Button startText;
     public Button exitText;
 	public Button creditsText;
+
+	public ScoreManager scoreManager;
 
 	// Use this for initialization
 	void Start () {
@@ -20,11 +24,12 @@ public class menuScript : MonoBehaviour {
 		creditsText = creditsText.GetComponent<Button>();
         quitMenu.enabled = false;
 		creditsCanvas.enabled = false;
+		achievementCanvas.enabled = false;
+		progressCanvas.enabled = false;
     }
 	
     public void ExitPress()
     {
-		Debug.Log ("Chamou");
         quitMenu.enabled = true;
         startText.enabled = false;
 		creditsText.enabled = false;
@@ -33,14 +38,12 @@ public class menuScript : MonoBehaviour {
 
 	public void CreditsPress()
 	{
-		Debug.Log ("Chamou1");
 		creditsCanvas.enabled = true;
 
 	}
 
 	public void BackCreditsPress()
 	{
-		Debug.Log ("Chamou2");
 		creditsCanvas.enabled = false;
 
 	}
@@ -55,14 +58,41 @@ public class menuScript : MonoBehaviour {
 
     public void StartLevel()
     {
-
+		scoreManager.bestScoreNew = 0f;
         SceneManager.LoadScene(1);
+		PlayerPrefs.SetInt("Gold1", 0);
+		PlayerPrefs.SetInt("Level1", 1);
+		PlayerPrefs.SetInt ("Exp1", 0);
     }
 
     public void ExitGame()
     {
         Application.Quit();
     }
+
+	public void Achievement()
+	{
+		achievementCanvas.enabled = true;
+
+	}
+
+	public void BackAchievement()
+	{
+		achievementCanvas.enabled = false;
+
+	}
+
+	public void Progress()
+	{
+		progressCanvas.enabled = true;
+
+	}
+
+	public void BackProgress()
+	{
+		progressCanvas.enabled = false;
+
+	}
 		
 	void Update () {
 		if (quitMenu.enabled == true) {

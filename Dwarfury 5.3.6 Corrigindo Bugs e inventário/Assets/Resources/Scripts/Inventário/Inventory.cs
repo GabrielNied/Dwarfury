@@ -26,7 +26,7 @@ public class Inventory : MonoBehaviour
 
 		slotAmount = 12;
 		inventoryPanel = GameObject.Find ("Inventory Panel");
-		slotPanel = inventoryPanel.transform.FindChild ("Slot Panel").gameObject;
+		slotPanel = inventoryPanel.transform.Find ("Slot Panel").gameObject;
 		for (int i = 0; i < slotAmount; i++)
 		{
 			items.Add (new Item ());

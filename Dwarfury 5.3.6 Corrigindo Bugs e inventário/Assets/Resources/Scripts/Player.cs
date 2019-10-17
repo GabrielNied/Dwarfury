@@ -38,6 +38,7 @@ public class Player : Character
 
     public bool LevelingUp { get; set; }
 
+	public bool trancaMovimento = false;
     private bool attack;
     private bool isGrounded;
     private bool jump;
@@ -74,10 +75,12 @@ public class Player : Character
     public int baseatk;
     public int basedef;
     public int level = 1;
+	public int baselevel = 1;
     public int exp = 0;
     public int maxexp = 10;
     public int skillpoint;
-    public int gold;
+	public int gold;
+	public int basegold;
 
     public FadeManager fM;
 
@@ -89,6 +92,7 @@ public class Player : Character
 
         if (Application.loadedLevel == 1)
         {
+			
             randomStats();
 
             PlayerPrefs.SetInt("Vida", basehealth);
@@ -105,7 +109,7 @@ public class Player : Character
         spriteRenderer = GetComponent<SpriteRenderer>();
         myRigidbody = GetComponent<Rigidbody2D>();
 
-        exp = PlayerPrefs.GetInt("Exp");
+
 
 
     }
@@ -116,12 +120,16 @@ public class Player : Character
         maxhealth = PlayerPrefs.GetInt("Vida2");
         atk = PlayerPrefs.GetInt("Atq1");
         def = PlayerPrefs.GetInt("Def1");
+		gold = PlayerPrefs.GetInt ("Gold1");
+		level = PlayerPrefs.GetInt ("Level1");
+		exp = PlayerPrefs.GetInt ("Exp1");
+		if (level < 1) {
+			level = 1;
+		}
     }
 
     void Update()
     {
-
-        PlayerPrefs.SetInt("Exp", exp);
 
         if (TakingDamage)
         {
@@ -133,7 +141,13 @@ public class Player : Character
             {
                 myRigidbody.velocity = Vector2.zero;
             }
-            HandleInput();
+			if (!trancaMovimento) {
+				HandleInput ();
+			}else{
+				myRigidbody.velocity = Vector2.zero;
+				MyAnimator.SetFloat ("speed", Mathf.Abs (0));
+				MyAnimator.SetFloat ("speedvertical", Mathf.Abs (0));
+			}
         }
     }
 
@@ -143,15 +157,18 @@ public class Player : Character
         {
             isGrounded = IsGrounded();
             float horizontal = Input.GetAxis("Horizontal");
+			float vertical = Input.GetAxis("Vertical");
             levelup();
 
 
+			if (!trancaMovimento) {
+				HandleMovement (horizontal, vertical);
+				HandleMovementEscada ();
+				Flip (horizontal);
 
-            HandleMovement(horizontal);
-            HandleMovementEscada();
-            Flip(horizontal);
-
-            HandleAttacks();
+				HandleAttacks ();
+				HandleMovementBau ();
+			}
         }
         ResetValues();
     }
@@ -164,32 +181,34 @@ public class Player : Character
         }
     }
 
-    private void HandleMovement(float horizontal)
+	private void HandleMovement(float horizontal, float vertical)
     {
         //		if (!this.myAnimator.GetCurrentAnimatorStateInfo (0).IsTag ("Attack")) {                                     PARA MOVIMENTAÇÃO QUANDO ATACA
+		if (!this.MyAnimator.GetCurrentAnimatorStateInfo (0).IsTag ("Bau")) {
+			myRigidbody.velocity = new Vector2 (horizontal * movementSpeed, myRigidbody.velocity.y);
 
-        myRigidbody.velocity = new Vector2(horizontal * movementSpeed, myRigidbody.velocity.y);
 
+			MyAnimator.SetFloat ("speed", Mathf.Abs (horizontal));
+			MyAnimator.SetFloat ("speedvertical", Mathf.Abs (vertical));
+			//		}																											PARA MOVIMENTAÇÃO QUANDO ATACA
 
-        MyAnimator.SetFloat("speed", Mathf.Abs(horizontal));
-        //		}																											PARA MOVIMENTAÇÃO QUANDO ATACA
+			if (pulando && jump2 && !isGrounded) {
+				Instantiate (jumpParticle, playersfeet.position, Quaternion.identity);
+				myRigidbody.velocity = new Vector2 (0, jumpForce / 50);
+				pulando = false;
 
-        if (pulando && jump2 && !isGrounded)
-        {
-            Instantiate(jumpParticle, playersfeet.position, Quaternion.identity);
-            myRigidbody.velocity = new Vector2(0, jumpForce / 50);
-            pulando = false;
-        }
-        else
-        {
-            if (isGrounded && jump)
-            {
-                //isGrounded = false;
-                myRigidbody.AddForce(new Vector2(0, jumpForce));
-                pulando = true;
-            }
-        }
+			} else {
+				if (isGrounded && jump) {
+					//isGrounded = false;
+					myRigidbody.AddForce (new Vector2 (0, jumpForce));
+					pulando = true;
+					MyAnimator.SetBool ("pulando", true);
+				}
+			}
+		}
     }
+
+
 
     /*            switch (dashState)
                 {
@@ -234,26 +253,24 @@ public class Player : Character
 
     private void HandleAttacks()
     {
-        //		if (attack && !this.myAnimator.GetCurrentAnimatorStateInfo (0).IsTag ("Attack")) {							 PARA MOVIMENTAÇÃO QUANDO ATACA
-        if (attack && !this.MyAnimator.GetCurrentAnimatorStateInfo(0).IsTag("Attack"))
-        {
-            MyAnimator.SetTrigger("attack");
-            CombatTextManager.Instance.CreateText(myRigidbody.transform.position, "" + atk);
-            Debug.Log("Posição " + myRigidbody.transform.position);
-            //			myRigidbody.velocity = Vector2.zero;																 PARA MOVIMENTAÇÃO QUANDO ATACA
-        }
+								 //PARA MOVIMENTAÇÃO QUANDO ATACA
+			if (attack && !this.MyAnimator.GetCurrentAnimatorStateInfo (0).IsTag ("Attack")) {
+				MyAnimator.SetTrigger ("attack");
+				CombatTextManager.Instance.CreateText (myRigidbody.transform.position, "" + atk);
+				//myRigidbody.velocity = Vector2.zero;																 //PARA MOVIMENTAÇÃO QUANDO ATACA
+			}
     }
 
-
-    /*
 	private void HandleMovementBau(){
 		if (abrir == true) {
 			if (Input.GetKey(KeyCode.E)) {
-
+				myRigidbody.velocity = Vector2.zero;
+				MyAnimator.SetTrigger("bau");					
+				abriu = true;
 			}
 		}
 	}
-	*/
+
 
 	private void HandleMovementEscada()
 	{
@@ -262,6 +279,7 @@ public class Player : Character
 		{
 			if (Input.GetButton("Subir"))
 			{
+				MyAnimator.SetBool ("naEscada 0", true);
 				myRigidbody.velocity = new Vector2(myRigidbody.velocity.x, 1 * movementSpeed / 2);
 			}
 		}
@@ -270,6 +288,7 @@ public class Player : Character
 		{
 			if (Input.GetButton("Descer"))
 			{
+				MyAnimator.SetBool ("naEscada 0", true);
 				myRigidbody.velocity = new Vector2(myRigidbody.velocity.x, -2 * movementSpeed / 2);
 			}
 		}
@@ -325,6 +344,7 @@ public class Player : Character
     private bool IsGrounded()
     {
         //	if (myRigidbody.velocity.y <= 0) {
+
         foreach (Transform point in groundPoints)
         {
             Collider2D[] colliders = Physics2D.OverlapCircleAll(point.position, groundRadius, whatIsGround);
@@ -333,6 +353,7 @@ public class Player : Character
             {
                 if (colliders[i].gameObject != gameObject)
                 {
+					MyAnimator.SetBool ("pulando", false);
                     return true;
                     //			}
                 }
@@ -428,7 +449,7 @@ public class Player : Character
     {
         if (exp >= maxexp)
         {
-            exp = 0;
+            exp -= maxexp;
             atk += 1;
             def += 1;
             health += 1;
@@ -436,6 +457,7 @@ public class Player : Character
             MyAnimator.SetTrigger("levelup");
             skillpoint += 1;
             level += 1;
+			maxexp += maxexp / 10;
         }
 
     }

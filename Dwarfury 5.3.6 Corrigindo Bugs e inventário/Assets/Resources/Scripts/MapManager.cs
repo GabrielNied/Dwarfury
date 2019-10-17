@@ -18,7 +18,6 @@ public class MapManager : MonoBehaviour {
 
 	void Awake () {
 		int choice = Random.Range(0, 3); //random entre 0 e 3
-		Debug.Log ("Bloco1: "+choice);
 		switch (choice)
 		{
 		case 0:
@@ -38,7 +37,6 @@ public class MapManager : MonoBehaviour {
 		}
 
 		int choice2 = Random.Range(0, 4); //random entre 0 e 3
-		Debug.Log ("Bloco2: "+choice2);
 		switch (choice2)
 		{
 		case 0:
@@ -57,7 +55,6 @@ public class MapManager : MonoBehaviour {
 		}
 			
 		int choice3 = Random.Range(0, 3); //random entre 0 e 3
-		Debug.Log ("Bloco3: "+choice3);
 		switch (choice3)
 		{
 		case 0:

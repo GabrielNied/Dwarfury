@@ -25,7 +25,7 @@ public class Loja : MonoBehaviour
 
 		slotAmount = 12;
 		lojaPanel = GameObject.Find ("Loja Panel");
-		slotPanel = lojaPanel.transform.FindChild ("Slot Panel").gameObject;
+		slotPanel = lojaPanel.transform.Find ("Slot Panel").gameObject;
 		for (int i = 0; i < slotAmount; i++)
 		{
 			items.Add (new Item ());
